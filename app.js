@@ -70,7 +70,7 @@ app.get('/search', async function(req, res) {
     let name = req.query.name;
     let client = await MongoClient.connect(url);
     let dbo = client.db("shope");
-    let result = await dbo.collection("product").find({ name: name }).toArray();
+    let result = await dbo.collection("product").find({ color: name }).toArray();
     res.render('index', { model: result });
 })
 
