@@ -24,7 +24,8 @@ var url = "mongodb+srv://haingocdeptrai:haingocdeptrai@cluster0.3ndgf.mongodb.ne
 app.post('/addProduct', async(req, res) => {
     let inputName = req.body.product;
     let inputPrice = req.body.price;
-    let newProduct = { name: inputName, price: inputPrice };
+    let inputColor = req.body.price;
+    let newProduct = { name: inputName, price: inputPrice, color: inputColor };
 
     let client = await MongoClient.connect(url);
     let dbo = client.db("shope");
