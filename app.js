@@ -65,6 +65,14 @@ app.get('/', async function(req, res) {
     res.render('index', { model: result });
 })
 
+app.get('/search', async function(req, res) {
+    let name = req.query.name;
+    let client = await MongoClient.connect(url);
+    let dbo = client.db("shope");
+    let result = await dbo.collection("product").find({ name: name }).toArray();
+    res.render('index', { model: result });
+})
+
 app.get('/remove', async(req, res) => {
     let id = req.query.id;
     var ObjectID = require('mongodb').ObjectID;
