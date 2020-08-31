@@ -25,7 +25,7 @@ app.post('/addProduct', async(req, res) => {
     let inputName = req.body.product;
     let inputPrice = req.body.price;
     let color = req.body.color;
-    let newProduct = { name: inputName, price: inputPrice, color: color };
+    let newProduct = { name: inputName, price: inputPrice };
 
     let client = await MongoClient.connect(url);
     let dbo = client.db("shope");
@@ -70,7 +70,7 @@ app.get('/search', async function(req, res) {
     let name = req.query.name;
     let client = await MongoClient.connect(url);
     let dbo = client.db("shope");
-    let result = await dbo.collection("product").find({ color: name }).toArray();
+    let result = await dbo.collection("product").find({ name: name }).toArray();
     res.render('index', { model: result });
 })
 
